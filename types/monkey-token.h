@@ -28,44 +28,9 @@ struct MonkeyToken {
     std::string literal;
     MonkeyTokenType tokenType;
 
-    MonkeyToken(std::string lit, MonkeyTokenType type) :
+    MonkeyToken(std::string lit) :
             literal(lit),
-            tokenType(type) {}
-
-    static std::string getSymbol(MonkeyTokenType token) {
-        switch (token) {
-            case UNKNOWN:
-                return "UNKNOWN";
-            case END:
-                return "EOF";
-            case IDENT:
-                return "IDENT";
-            case INT:
-                return "INT";
-            case ASSIGN:
-                return "=";
-            case PLUS:
-                return "+";
-            case COMMA:
-                return ",";
-            case SEMICOLON:
-                return ";";
-            case LPAREN:
-                return "(";
-            case RPAREN:
-                return ")";
-            case LBRACE:
-                return "{";
-            case RBRACE:
-                return "}";
-            case FUNC:
-                return "FUNCTION";
-            case LET:
-                return "LET";
-            default:
-                return "INVALID";
-        }
-    }
+            tokenType(MonkeyToken::getType(lit)) {}
 
     static MonkeyTokenType getType(std::string &symbol) {
         if (symbol == "UNKNOWN") return UNKNOWN;
